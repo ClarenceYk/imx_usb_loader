@@ -2,11 +2,11 @@ mx6_qsb
 #hid/bulk,[old_header,]max packet size, dcd_addr, {ram start, ram size}(repeat valid ram areas)
 hid,1024,0x910000,0x10000000,2G,0x00900000,0x40000
 # Note; only dcd as first step (setup ram)
-firmware/u-boot-dtb_1804.imx: dcd
+firmware/u-boot-imx6qsabresd_sd.imx: dcd
 # Then load a kernel with initramfs (self contained linux) at known address
-firmware/zImage_1804.bin: load 0x12000000
-firmware/fsl-image-mfgtool-initramfs-imx6qsabresd-1804.rootfs.cpio.gz.u-boot: load 0x12C00000
-firmware/zImage_1804.dtb: load 0x18000000
+firmware/zImage: load 0x12000000
+firmware/fsl-image-mfgtool-initramfs-imx_mfgtools.cpio.gz.u-boot: load 0x12C00000
+firmware/zImage-imx6q-sabresd.dtb: load 0x18000000
 # Now, we load a u-boot that expects preloaded software at known adress
 # Note, to make this boot, the clear_dcd field seems necessary
-firmware/u-boot-dtb_1804.imx: clear_dcd,load,plug,jump header
+firmware/u-boot-imx6qsabresd_sd.imx: clear_dcd,load,plug,jump header
